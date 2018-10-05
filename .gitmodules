@@ -4,3 +4,12 @@
 [submodule ".vim/bundle/ale"]
 	path = .vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
+[submodule ".vim/bundle/mru"]
+	path = .vim/bundle/mru
+	url = https://github.com/yegappan/mru.git
+[submodule ".vim/bundle/goyo"]
+	path = .vim/bundle/goyo
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule ".vim/bundle/zenroom"]
+	path = .vim/bundle/zenroom
+	url = https://github.com/amix/vim-zenroom2.git
