@@ -41,13 +41,34 @@ set incsearch
 " => utils
 " --------
 map 0 ^
-
-nmap <leader>w :w!<cr>
 set history=500
+
+" quick save
+nmap <leader>w :w!<cr>
+" sudo save
 command W w !sudo tee % > /dev/null
 
-"set foldcolumn=1
+" split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
+"set foldcolumn=1
+set clipboard=unnamed
+
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" python identation PEP 8
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
 
 " ---------
 " => slimux
