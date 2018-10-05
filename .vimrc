@@ -42,6 +42,12 @@
 
     map 0 ^
     set history=500
+    " spell checker
+    map <leader>ss :setlocal spell!<cr>
+
+    " bash bindings
+    cnoremap <C-A>		<Home>
+    cnoremap <C-E>		<End>
 
     " quick save
     nmap <leader>w :w!<cr>
@@ -83,7 +89,5 @@
     " goyo
     map <leader>e :Goyo<cr>
 
-    " lightline
-    let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ }
+    " NERDTree
+    map <leader>nn :NERDTreeToggle<cr>
