@@ -1,80 +1,89 @@
-" --------------
-" => some basics
-" --------------
-execute pathogen#infect()
-execute pathogen#helptags()
+" => basics
+" ---------
 
-let mapleader="\\"
-set nocompatible
-filetype plugin on
-syntax on
-set encoding=utf-8
+    execute pathogen#infect()
+    execute pathogen#helptags()
 
+    let mapleader="\\"
+    set nocompatible
+    filetype plugin on
+    syntax on
+    set encoding=utf-8
 
-" ----------
 " => visuals
 " ----------
-colorscheme peaksea
-set number
-" set relativenumber
-set so=7
 
-set expandtab
-set shiftwidth=4
-set tabstop=4
+    colorscheme peaksea
+    set background=dark
+    " highlight Normal ctermfg=black ctermbg=black
+    " set number
+    " set relativenumber
+    set so=7
 
-set laststatus=2
-set statusline=\ %F%m%r%h\ %w\ \ Line:\ %l\ \ Column:\ %c
+    set expandtab
+    set shiftwidth=4
+    set tabstop=4
 
-set splitbelow
-set splitright
+    set laststatus=2
+    set statusline=\ %F%m%r%h\ %w\ \ Line:\ %l\ \ Column:\ %c
 
-set wildmenu
-set wildignore=*.o,*~,*.pyc
+    set splitbelow
+    set splitright
 
-set ignorecase
-set hlsearch
-set incsearch
+    set wildmenu
+    set wildignore=*.o,*~,*.pyc
 
+    set ignorecase
+    set hlsearch
+    set incsearch
 
-" --------
 " => utils
 " --------
-map 0 ^
-set history=500
 
-" quick save
-nmap <leader>w :w!<cr>
-" sudo save
-command W w !sudo tee % > /dev/null
+    map 0 ^
+    set history=500
 
-" split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+    " quick save
+    nmap <leader>w :w!<cr>
+    " sudo save
+    command W w !sudo tee % > /dev/null
 
-"set foldcolumn=1
-set clipboard=unnamed
+    " split navigations
+    nnoremap <C-J> <C-W><C-J>
+    nnoremap <C-K> <C-W><C-K>
+    nnoremap <C-L> <C-W><C-L>
+    nnoremap <C-H> <C-W><C-H>
 
-highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+    "set foldcolumn=1
+    set clipboard=unnamed
 
-" python identation PEP 8
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
+    highlight BadWhitespace ctermbg=red guibg=darkred
+    au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" ---------
-" => slimux
-" ---------
-map <leader>s :SlimuxREPLSendLine<CR>
-vmap <leader>s :SlimuxREPLSendSelection<CR>
-map <leader>b :SlimuxREPLSendBuffer<CR>
-map <leader>a :SlimuxShellLast<CR>
-map <leader>k :SlimuxSendKeysLast<CR>
+    " python identation PEP 8
+    au BufNewFile,BufRead *.py
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=79 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix |
+
+" => plugins
+" ----------
+
+    " slimux
+    map <leader>r :SlimuxREPLSendLine<cr>j
+    vmap <leader>r :SlimuxREPLSendSelection<cr>j
+
+    " mru
+    map <leader>f :MRU<cr>
+
+    " goyo
+    map <leader>e :Goyo<cr>
+
+    " lightline
+    let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
