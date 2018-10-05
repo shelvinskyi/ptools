@@ -25,7 +25,6 @@
     set tabstop=4
 
     set laststatus=2
-    set statusline=\ %F%m%r%h\ %w\ \ Line:\ %l\ \ Column:\ %c
 
     set splitbelow
     set splitright
@@ -37,6 +36,7 @@
     set hlsearch
     set incsearch
 
+    set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
 " => utils
 " --------
 
