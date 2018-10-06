@@ -16,7 +16,7 @@
     colorscheme peaksea
     set background=dark
     set so=7
-    map <leader>x :set invnumber<cr>
+    map <leader>m :set invnumber<cr>
     set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
 
     " highlight Normal ctermfg=black ctermbg=black
@@ -36,15 +36,8 @@
     set hlsearch
     set incsearch
 
-    " add a bit extra margin to the left
-    set foldcolumn=1
-
     " turn off error sound
     set noeb vb t_vb=
-
-    " show bad whitespaces
-    :highlight ExtraWhitespace ctermbg=red guibg=red
-    :match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " => utils
 " --------
@@ -71,7 +64,17 @@
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
-    " system buffer
+    " buffer fun
+    nnoremap <leader>] :bn<cr>
+    nnoremap <leader>[ :bp<cr>
+
+    nnoremap <leader>1 :1b<cr>
+    nnoremap <leader>2 :2b<cr>
+    nnoremap <leader>3 :3b<cr>
+    nnoremap <leader>4 :4b<cr>
+    nnoremap <leader>5 :5b<cr>
+
+    " system clipboard
     set clipboard=unnamed
 
 " => plugins
@@ -101,12 +104,14 @@
 
     " goyo
     map <leader>z :Goyo<cr>
+    let g:goyo_width=100
+    let g:goyo_height="90%"
 
     " NERDTree
-    map <leader>nn :NERDTreeToggle<cr>
+    map <leader>t :NERDTreeToggle<cr>
 
     " ale
-    map <leader>xx :ALEToggle<cr>
+    map <leader>x :ALEToggle<cr>
     let g:ale_linters_explicit=1
     let g:ale_linters={
         \ 'python': ['autopep8','flake8','mypy']}
@@ -118,4 +123,4 @@
 " ------------
 
     " python
-
+    " TODO put some pytest stuff
