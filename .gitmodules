@@ -19,3 +19,9 @@
 [submodule ".vim/bundle/bufexplorer"]
 	path = .vim/bundle/bufexplorer
 	url = https://github.com/vim-scripts/bufexplorer.zip.git
+[submodule ".vim/bundle/commentary"]
+	path = .vim/bundle/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/bundle/jedi"]
+	path = .vim/bundle/jedi
+	url = https://github.com/davidhalter/jedi-vim.git

@@ -13,6 +13,7 @@
 " => visuals
 " ----------
 
+    set t_Co=256
     colorscheme peaksea
     set background=dark
     " highlight Normal ctermfg=black ctermbg=black
@@ -30,13 +31,18 @@
     set splitright
 
     set wildmenu
-    set wildignore=*.o,*~,*.pyc
 
     set ignorecase
     set hlsearch
     set incsearch
 
     set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
+
+    " Add a bit extra margin to the left
+    set foldcolumn=1
+
+    set noeb vb t_vb=
+
 " => utils
 " --------
 
@@ -49,10 +55,16 @@
     cnoremap <C-A>		<Home>
     cnoremap <C-E>		<End>
 
+    " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+    map <space> /
+    map <m-space> ?
+
     " quick save
     nmap <leader>w :w!<cr>
-    " sudo save
-    command W w !sudo tee % > /dev/null
+
+    " configure backspace so it acts as it should act
+    set backspace=eol,start,indent
+    set whichwrap+=<,>,h,l
 
     " split navigations
     nnoremap <C-J> <C-W><C-J>
@@ -60,9 +72,40 @@
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 
-    "set foldcolumn=1
+    " system buffer
     set clipboard=unnamed
 
+" => plugins
+" ----------
+
+    " jedi
+   
+    
+
+    " slimux
+    map <leader>r :SlimuxREPLSendLine<cr>j
+    vmap <leader>r :SlimuxREPLSendSelection<cr>j
+
+    " bufexplorer
+    let g:bufExplorerDefaultHelp=0
+    let g:bufExplorerShowRelativePath=1
+    map <leader>f \be
+
+    " goyo
+    map <leader>z :Goyo<cr>
+
+    " NERDTree
+    map <leader>nn :NERDTreeToggle<cr>
+   
+
+    " ale
+    map <leader>xx :ALEEnable<cr>
+    map <leader>x :ALEDisable<cr>
+
+" => filetypes
+" ------------
+
+    " python whitespaces
     highlight BadWhitespace ctermbg=red guibg=darkred
     au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
@@ -75,19 +118,3 @@
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix |
-
-" => plugins
-" ----------
-
-    " slimux
-    map <leader>r :SlimuxREPLSendLine<cr>j
-    vmap <leader>r :SlimuxREPLSendSelection<cr>j
-
-    " mru
-    map <leader>f :MRU<cr>
-
-    " goyo
-    map <leader>e :Goyo<cr>
-
-    " NERDTree
-    map <leader>nn :NERDTreeToggle<cr>
