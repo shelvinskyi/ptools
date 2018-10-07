@@ -13,13 +13,13 @@
 " ----------
 
     set t_Co=256
-    colorscheme peaksea
+
     set background=dark
+    colorscheme peaksea_light
+
     set so=7
     map <leader>m :set invnumber<cr>
     set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
-
-    " highlight Normal ctermfg=black ctermbg=black
 
     set expandtab
     set shiftwidth=4
