@@ -124,9 +124,3 @@
     let g:ale_set_highlights=0
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
-
-" => filetypes
-" ------------
-
-    " python
-    " TODO put some pytest stuff
