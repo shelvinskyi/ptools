@@ -77,6 +77,9 @@
     " system clipboard
     set clipboard=unnamed
 
+    " pytest binding
+    nnoremap <leader>t :w \| !pytest %<cr>
+
 " => plugins
 " ----------
 
@@ -90,7 +93,7 @@
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader>n"
     let g:jedi#completions_command = "<C-Space>"
-    let g:jedi#popup_select_first=0
+    let g:jedi#popup_select_first=1
     set completeopt=noselect,menuone
 
     " slimux
@@ -108,7 +111,7 @@
     let g:goyo_height="90%"
 
     " NERDTree
-    map <leader>t :NERDTreeToggle<cr>
+    " map <leader>t :NERDTreeToggle<cr>
 
     " ale
     map <leader>x :ALEToggle<cr>
