@@ -54,6 +54,9 @@
     " quick save
     nmap <leader>w :w!<cr>
 
+    " pytest
+    nnoremap <leader>t :w \| !pytest -vv  %<cr>
+
     " configure backspace so it acts as it should act
     set backspace=eol,start,indent
     set whichwrap+=<,>,h,l
@@ -98,7 +101,7 @@
 
     " slimux
     map <leader>r :SlimuxREPLSendLine<cr>j
-    vmap <leader>r :SlimuxREPLSendSelection<cr>j
+    vmap <leader>r :SlimuxREPLSendLine<cr>j
 
     " bufexplorer
     let g:bufExplorerDefaultHelp=0
@@ -111,7 +114,7 @@
     let g:goyo_height="90%"
 
     " NERDTree
-    " map <leader>t :NERDTreeToggle<cr>
+    map <leader>mm :NERDTreeToggle<cr>
 
     " ale
     map <leader>x :ALEToggle<cr>
