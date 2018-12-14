@@ -96,8 +96,8 @@
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader>n"
     let g:jedi#completions_command = "<C-Space>"
-    let g:jedi#popup_select_first=1
-    set completeopt=noselect,menuone
+    let g:jedi#popup_select_first=0
+    set completeopt=menuone,longest
 
     " slimux
     map <leader>r :SlimuxREPLSendLine<cr>j
