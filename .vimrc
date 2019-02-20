@@ -124,3 +124,9 @@
     let g:ale_set_highlights=0
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
+
+    " ctrlp
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn|__pycache__)$',
+      \ 'file': '\v\.(exe|so|dll|html|css|pyc)$',
+      \ }
