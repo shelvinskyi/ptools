@@ -8,3 +8,4 @@ ln -sf ptools/.vim ~/.vim
 ln -sf ptools/.vimrc ~/.vimrc
 ln -sf ptools/.powerline ~/.powerline
 ln -sf ptools/.tmux.conf ~/.tmux.conf
+ln -sf ptools/.alacritty.yml ~/.config/alacritty/alacritty.yml
