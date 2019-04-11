@@ -9,5 +9,5 @@ ln -sf ptools/.vimrc ~/.vimrc
 ln -sf ptools/.powerline.sh ~/.powerline.sh
 ln -sf ptools/.utils.sh ~/.utils.sh
 ln -sf ptools/.tmux.conf ~/.tmux.conf
-mkdir -r ~/.config/alacritty/
+mkdir -p ~/.config/alacritty/
 cp ptools/alacritty.yml ~/.config/alacritty/
