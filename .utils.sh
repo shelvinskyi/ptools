@@ -1,0 +1,7 @@
+alias gotods="ssh -A -t  <username@host> \"cd /crypted-volume-02/igor/; bash\""
+alias weather="curl wttr.in/London"
+alias mobile="echo '07548682559'"
+alias cal="cal -3"
+alias notes="vim ~/notes"
+alias dark="sed -i -e 's/colors:\ \*light/colors:\ \*dark/g' ~/.config/alacritty/alacritty.yml"
+alias light="sed -i -e 's/colors:\ \*dark/colors:\ \*light/g' ~/.config/alacritty/alacritty.yml"
