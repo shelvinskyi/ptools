@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/cntrlp"]
 	path = .vim/bundle/cntrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/argwrap"]
+	path = .vim/bundle/argwrap
+	url = https://github.com/FooSoft/vim-argwrap.git

@@ -130,3 +130,6 @@
       \ 'dir':  '\v[\/]\.(git|hg|svn|__pycache__)$',
       \ 'file': '\v\.(exe|so|dll|html|css|pyc)$',
       \ }
+
+    " argwrap
+    nnoremap <leader>o :ArgWrap<CR>
