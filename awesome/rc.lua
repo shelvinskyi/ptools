@@ -422,7 +422,7 @@ clientkeys = gears.table.join(
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "m",
+    awful.key({ modkey, "Shift"   }, "Return",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
             c:raise()
