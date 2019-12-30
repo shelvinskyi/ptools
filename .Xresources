@@ -41,13 +41,15 @@ Xft.dpi:       160
 
 !! URxvt Appearance
 
-*.font: xft:RobotoMono:style=Regular:size=13
+rofi.font: RobotoMono 20
+
+*.font: xft:RobotoMono:style=Regular:size=13, xft:NotoColorEmoji:size=13
 *.boldFont: xft:RobotoMono:style=Bold:size=13
 *.italicFont: xft:RobotoMono:style=Italic:size=13
 *.boldItalicFont: xft:RobotoMono:style=Bold Italic:size=13
 
 *.transparent: true
-*.shading: 30
+*.shading: 20
 
 
 URxvt.letterSpace: 0

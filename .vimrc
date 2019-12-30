@@ -18,7 +18,7 @@
     colorscheme peaksea_light
 
     set so=7
-    map <leader>m :set invnumber<cr>
+    map <leader>n :set number! relativenumber!<cr>
     set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
 
     set expandtab
@@ -45,7 +45,7 @@
     map 0 ^
     set history=500
     " spell checker
-    map <leader>ss :setlocal spell!<cr>
+    map <leader>s :setlocal spell!<cr>
 
     " bash bindings
     cnoremap <C-A>		<Home>
@@ -93,8 +93,8 @@
     let g:jedi#goto_assignments_command="<leader>a"
     let g:jedi#goto_definitions_command="<leader>d"
     let g:jedi#rename_command = ""
-    let g:jedi#documentation_command = "K"
-    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#documentation_command = "<leader>s"
+    let g:jedi#usages_command = "<leader>e"
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#popup_select_first=0
     set completeopt=menuone,longest
@@ -114,7 +114,7 @@
     let g:goyo_height="90%"
 
     " NERDTree
-    map <leader>mm :NERDTreeToggle<cr>
+    map <leader>m :NERDTreeToggle<cr>
 
     " ale
     map <leader>x :ALEToggle<cr>
