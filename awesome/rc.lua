@@ -1,5 +1,4 @@
 pcall(require, "luarocks.loader")
-
 -- Standard awesome library
 local os            = os
 local gears         = require("gears")
@@ -10,9 +9,9 @@ local naughty       = require("naughty")
 local menubar       = require("menubar")
 local lain          = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup")
-
 require("awful.autofocus")
-require("awful.hotkeys_popup.keys")
+
+hotkeys_popup.widget.hide_without_description = true
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -53,10 +52,9 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.spiral,
     awful.layout.suit.max,
-    lain.layout.centerwork,
     awful.layout.suit.tile.left,
+    lain.layout.centerwork,
     awful.layout.suit.floating,
 }
 -- }}}
@@ -126,7 +124,7 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.fit(wallpaper, s)
+        gears.wallpaper.maximized(wallpaper, s)
     end
 end
 
@@ -210,7 +208,6 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 
-    -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
@@ -225,7 +222,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = "top",
         screen = s,
         alight = 'right',
-        width = 1000
+        -- width = 1000
     })
 
     -- Add widgets to the wibox
@@ -261,7 +258,7 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-              {description="show help", group="awesome"}),
+              {description="show help", group="hotkeys"}),
     awful.key({ modkey, "Shift"   }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey, "Shift"   }, "Right",  awful.tag.viewnext,
@@ -280,7 +277,7 @@ globalkeys = gears.table.join(
         {description = "focus previous by index", group = "client"}
     ),
     awful.key({ modkey,           }, "q", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+              {description = "show main menu", group = "hotkeys"}),
 
     -- By direction client focus
     awful.key({ modkey }, "Down",
@@ -327,18 +324,18 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "`", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
+              {description = "open a terminal", group = "hotkeys"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
+              {description = "reload awesome", group = "hotkeys"}),
 
     awful.key({ modkey,  "Shift"  }, "[",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
+              {description = "increase master width factor", group = "client"}),
     awful.key({ modkey,   "Shift" }, "]",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
+              {description = "decrease master width factor", group = "client"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
+              {description = "next layout", group = "client"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
+              {description = "previous layout", group = "client"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -354,9 +351,9 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "\\",
-              function () os.execute("rofi -show combi") end,
+              function () awful.spawn("rofi -show combi") end,
               -- function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+              {description = "run prompt", group = "hotkeys"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -367,35 +364,66 @@ globalkeys = gears.table.join(
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"}),
+              {description = "lua execute prompt", group = "hotkeys"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+              {description = "show the menubar", group = "hotkeys"}),
 
     -- screen locker
-    awful.key({ modkey, "Shift"  }, "l", function () os.execute("physlock") end,
+    awful.key({ modkey }, "l", function () awful.spawn("physlock") end,
               {description = "lock screen", group = "hotkeys"}),
 
+    awful.key({ modkey }, "e", function () awful.spawn("rofi -show emoji -modi emoji") end,
+              {description = "emoji catalogue", group = "hotkeys"}),
+
+    awful.key({ modkey }, "f", function() awful.spawn("Thunar") end,
+              {description = "run filemanager", group = "hotkeys"}),
+    awful.key({ modkey }, "0", function()
+                    awful.spawn.with_shell("sleep 0.5 && scrot /tmp/screenshot-$(date +%F_%T).png -s -e 'xclip -selection c -t image/png < $f'")
+                end,
+              {description = "run filemanager", group = "hotkeys"}),
+
+    awful.key({ modkey,           }, "i", function()
+                    local c = client.focus
+                    if c ~= nill and c.class == "code-oss" then
+                        c:kill()
+                    else
+                        awful.spawn.with_shell("code $HOME/notes")
+                    end
+                end,
+              {description = "toggle notes", group = "hotkeys"}),
+
+    awful.key({ modkey }, "/", function()
+                    local c = client.focus
+                    if c ~= nill and c.name == "mlipython" then
+                        c:kill()
+                    else
+                        awful.spawn(terminal.." -e ipython", {name = 'mlipython'})
+                    end
+                end,
+              {description = "ipython in terminal", group = "hotkeys"}),
     -- brightness
-    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
-              {description = "brightness up", group = "hotkeys"}),
+    awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn("xbacklight -inc 10") end,
+              {description = "brightness +", group = "hotkeys"}),
 
-    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
-              {description = "brightness down", group = "hotkeys"}),
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn("xbacklight -dec 10") end,
+              {description = "brithness -", group = "hotkeys"}),
 
+    awful.key({ modkey }, "k", function () print('hoho')  end,
+              {description = "hoho", group = "hotkeys"}),
     -- volume control
-    awful.key({ }, "XF86AudioRaiseVolume", function () os.execute("amixer -q sset Master 5%+") end,
-              {description = "volume up", group = "hotkeys"}),
-    awful.key({ }, "XF86AudioLowerVolume", function () os.execute("amixer -q sset Master 5%-") end,
-              {description = "volume down", group = "hotkeys"}),
-    awful.key({ }, "XF86AudioMute", function () os.execute("amixer -q sset Master toggle") end,
-              {description = "volume mute/unmute", group = "hotkeys"})
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.spawn("amixer -q sset Master 2dB+") end,
+              {description = "volume +", group = "hotkeys"}),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.spawn("amixer -q sset Master 2dB-") end,
+              {description = "volume -", group = "hotkeys"}),
+    awful.key({ }, "XF86AudioMute", function () awful.spawn("amixer -q sset Master toggle") end,
+              {description = "mute", group = "hotkeys"})
 )
 
 
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey,           }, "Return",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
@@ -403,11 +431,9 @@ clientkeys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey,    }, "w",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Shift"   }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,  "Shift"  }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
@@ -418,22 +444,16 @@ clientkeys = gears.table.join(
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "Return",
+    awful.key({ modkey,           }, "m",
         function (c)
             c.maximized = not c.maximized
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "Return",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end ,
-        {description = "(un)maximize vertically", group = "client"}),
 
     -- Dynamic tagging
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag() end,
-              {description = "add new tag", group = "tag"})
+              {description = "add new tag", group = "hotkeys"})
 )
 
 -- Bind all key numbers to tags.
@@ -460,7 +480,7 @@ for i = 1, 5 do
                          awful.tag.viewtoggle(tag)
                       end
                   end,
-                  {description = "toggle tag #" .. i, group = "tag"}),
+                  {description = "toggle #" .. i, group = "tag"}),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
@@ -471,18 +491,7 @@ for i = 1, 5 do
                           end
                      end
                   end,
-                  {description = "move focused client to tag #"..i, group = "tag"}),
-        -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:toggle_tag(tag)
-                          end
-                      end
-                  end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+                  {description = "client to #"..i, group = "tag"})
     )
 end
 
@@ -601,11 +610,93 @@ client.connect_signal("request::titlebars", function(c)
     })
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
-end)
-
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Hotkeys Help
+
+local extra_keys = {
+    ['vim'] = {
+        {modifiers = {}, keys = {
+            ['=']="auto format", y="yank", d="delete", c="change", ["!"]='external filter', ['&lt;']='unindent',
+            ['~']="toggle case", q=". record macro", r=". replace char", u="undo", p="paste after",
+            gg="go to the top of file", gf="open file under cursor", x="delete char", v="visual mode",
+            m=". set mark", ['.']="repeat command", ["@"]='. play macro', ["&amp;"]='repeat :s', Q='ex mode',
+            Y='yank line', U='undo line', P='paste before cursor', D='delete to EOL', J='join lines',
+            K='help', [':']='ex cmd line', ['"']='. register spec', ZZ='quit and save', ZQ='quit discarding changes',
+            X='back-delete', V='visual lines selection', ['&gt;']='indent',
+        }},
+        {modifiers = {"Ctrl"}, keys = {
+            -- command
+            w=". window operations", r="redo", ["["]="normal mode", a="increase number",
+            x="decrease number", g="file/cursor info", z="suspend", c="cancel/normal mode",
+            v="visual block selection", e="scroll line up", y="scroll line down",
+    }}},
+    ["vim motion"] = {
+        {modifiers = {}, keys = {
+            -- motion
+            ['`']="goto mark", ['0']='"hard" BOL', ['-']="prev line", w="next word", e="end word", ['[']=". misc",
+            [']']=". misc", ["'"]=". goto mk. BOL", b="prev word", ["|"]='BOL/goto col', ["$"]='EOL',
+            ["%"]='goto matching bracket', ["^"]='"soft" BOL', ["+"]='next line', W='next WORD', E='end WORD',
+            ['{']="paragraph begin", ['}']="paragraph end", G='EOF/goto line', H='move cursor to screen top',
+            M='move cursor to screen middle', L='move cursor to screen bottom', B='prev WORD',
+            zt="scroll cursor to the top", zz="scroll cursor to the center", zb="scroll cursor to the bottom",
+        }},
+        {modifiers = {"Ctrl"}, keys = {
+            u="half page up", d="half page down", b="page up", f="page down", o="prev mark"
+    }}},
+    ['vim find'] = {
+        {modifiers = {}, keys = {
+            -- find
+            [';']="repeat t/T/f/F", [',']="reverse t/T/f/F", ['/']=". find", ['?']='. reverse find',
+            n="next search match", N='prev search match', f=". find char", F='. reverse find char',
+            t=". 'till char", T=". reverse 'till char", ["*"]='find word under cursor', ["#"]='reverse find under cursor',
+    }}},
+    ['vim insert'] = {
+        {modifiers = {}, keys = {
+            i="insert mode", o="new line below", a="append", s="subst char", R='replace mode', I='insert at BOL',
+            O='new line above', A='append at EOL', S='subst line', C='change to EOL',
+    }}},
+    ['vim jedi'] = {
+        {modifiers = {"leader"}, keys = {
+            a="goto assignments", d="goto definition", s="show docs", e="show usage"
+    }}},
+    ['vimz'] = {
+        {modifiers = {'leader'}, keys = {
+            n="line number toggle", q="delete buffer", s="spell cheker", w="quick save", t="run pytest",
+            ['[ ]']="prev/next buffer", ['1..5']="1 .. 5 buffer", r="slimux repl", f="explore buffers",
+            z="goyo focus", b="nerdtree", x="toggle ale", o="argwrap"
+        }},
+        {modifiers = {'Crtl'}, keys = {
+            ['j/k/l/h']="navigate split", p="open file"
+    }}},
+    -- ipythpon and jupyter!
+    ['ipython'] = {
+        {modifiers = {}, keys = {
+            ["%history"]="show prev commands", ["%load"]="load code", ["%load_ext"]="load extension",
+            ["%pdb"]="use pdb", ["%pdef"]="print signature", ["%pdoc"]="print docstring", ["%pinfo"]="object info",
+            ["%pprint"]="toggle pretty print", ["%prun"]="code profiler", ["%who"]="show all variables",
+            ["%time"]="execution time", ["%timeit"]="[-n -r] exec time",
+            H="show shortcuts", A="insert above", B="insert below", X="cut cell", C="copy cell", V="paste cell below",
+            Z="undo delete cell", Y="cell type to code", M="cell type to markdown", P="command palette",
+            ["II"]="interupt kernel", ["00"]="restart kernel"
+        }},
+        {modifiers = {"Ctrl"}, keys = {
+            s="save notebook", ["Enter"]="run cell"
+        }},
+        {modifiers = {"Shift"}, keys = {
+            V="paste cell above",
+            ["Enter"]="run cell and move"
+    }}},
+    ["tmux"] = {
+        {modifiers = {'leader'}, keys = {
+            ["|"]="split vertically", ["-"]="split horizontally", x="kill tab", c="create tab",
+            z="toggle focus", ["1..9"]="goto 1..9 tab", ["?"]="show shortcuts", ["[ ]"]="resize pane left/right"
+    }}},
+    ["hotkeysz"] = {
+        {modifiers = {modkey}, keys = {d="zeal docstrings"}}
+    }
+}
+
+hotkeys_popup.widget.add_hotkeys(extra_keys)

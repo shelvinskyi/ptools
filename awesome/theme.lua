@@ -13,7 +13,7 @@ local theme_path = os.getenv("HOME") .. "/.config/awesome"
 
 local theme = {}
 
-theme.font          = "Roboto Light 10"
+theme.font          = "Roboto Light 8"
 
 theme.bg_normal     = "#4D5C63"
 theme.bg_focus      = "#698298"
@@ -26,14 +26,14 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(10)
+theme.useless_gap   = dpi(7)
 theme.zero_width    = dpi(0)
 theme.border_width  = dpi(0)
 theme.border_normal = "#C5967C"
-theme.border_focus  = "#FBF0DC"
+theme.border_focus  = "#A49F89"
 theme.bg_tl_normal  = theme.border_normal
 theme.bg_tl_focus   = theme.border_focus
-theme.border_marked = "#91231c"
+theme.border_marked = "#91231C"
 
 local gray          = "#9E9C9A"
 
@@ -48,7 +48,7 @@ local gray          = "#9E9C9A"
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
---theme.taglist_bg_focus = "#ff0000"
+-- theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(3)
@@ -118,7 +118,7 @@ theme.keyboardlayout = kblayout
 theme.cal = lain.widget.cal({
     attach_to = { clock },
     notification_preset = {
-        font = "Roboto Mono 10",
+        font = 'Roboto Mono 10',
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -161,6 +161,9 @@ local bat = lain.widget.bat({
         else
             icon = utf8.char(0xf244)
         end
+        if bat_now.status == "Charging" then
+            icon = utf8.char(0xf5e7)
+        end
         bat_str = " " .. icon .. " " .. p .. "% "
         widget:set_markup(markup.font(theme.font, markup(gray, bat_str)))
     end,
@@ -171,7 +174,7 @@ theme.bat = bat
 
 -- ALSA volume
 theme.volume = lain.widget.alsa({
-    timeout = 1,
+    timeout = 10,
     settings = function()
         vlevel  = volume_now.level
 
@@ -183,28 +186,6 @@ theme.volume = lain.widget.alsa({
 
         widget:set_markup(markup.font(theme.font, vol))
     end
-})
-
--- Weather
-theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
-    settings = function()
-        units = math.floor(weather_now["main"]["temp"])
-        icon = ""
-        if weather_now["weather"][1]['main'] == 'Rain' then
-            icon = utf8.char(0xf73d)
-        elseif units >= 10 then
-            icon = utf8.char(0xf6c4)
-        else
-            icon = utf8.char(0xf2dc)
-        end
-        widget:set_markup(markup.font(theme.font, "  " .. icon .. " "))
-    end,
-    notification_preset = {
-        font = "Roboto Mono 10",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    }
 })
 
 return theme

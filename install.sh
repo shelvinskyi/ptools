@@ -1,6 +1,8 @@
-# symlinking all the vim stuff
-cp .vim/ ~/.vim
-cp .vimrc ~/.vimrc
-cp .powerline.sh ~/.powerline.sh
-cp .utils.sh ~/.utils.sh
-cp .tmux.conf ~/.tmux.conf
+cp -r .utils ~/
+cp -r .vim ~/
+cp .vimrc ~/
+cp .tmux.conf ~/
+cp -r awesome ~/.config/
+cp htoprc ~/.config/htop/
+cp rc.conf.ranger ~/.config/ranger/rc.conf
+~                                                

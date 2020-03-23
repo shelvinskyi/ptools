@@ -44,6 +44,7 @@
 
     map 0 ^
     set history=500
+    map <leader>q :bdelete<cr>
     " spell checker
     map <leader>s :setlocal spell!<cr>
 
@@ -53,9 +54,6 @@
 
     " quick save
     nmap <leader>w :w!<cr>
-
-    " pytest
-    nnoremap <leader>t :w \| !pytest -vv  %<cr>
 
     " configure backspace so it acts as it should act
     set backspace=eol,start,indent
@@ -114,7 +112,7 @@
     let g:goyo_height="90%"
 
     " NERDTree
-    map <leader>m :NERDTreeToggle<cr>
+    map <leader>b :NERDTreeToggle<cr>
 
     " ale
     map <leader>x :ALEToggle<cr>
