@@ -7,4 +7,3 @@ cp htoprc ~/.config/htop/
 cp rc.conf.ranger ~/.config/ranger/rc.conf
 cp .Xmodmap ~/
 cp .Xresources ~/
-~                                                
