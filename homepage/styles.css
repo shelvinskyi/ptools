@@ -150,12 +150,10 @@ body {
   color: var(--fg);
 }
 .paper-container {
-  padding: 1em;
+  width: 35%;
   background-color: var(--containerBg);
+  padding: 1em;
   border-radius: 3px;
   font-family: 'Roboto Mono';
   font-size: 0.85rem;
-  width: 35%;
-  margin: 0em 0.5em;
-  box-sizing: border-box;
 }

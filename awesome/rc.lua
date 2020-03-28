@@ -383,14 +383,7 @@ globalkeys = gears.table.join(
                 end,
               {description = "run filemanager", group = "hotkeys"}),
 
-    awful.key({ modkey,           }, "i", function()
-                    local c = client.focus
-                    if c ~= nill and c.class == "code-oss" then
-                        c:kill()
-                    else
-                        awful.spawn.with_shell("code $HOME/notes")
-                    end
-                end,
+    awful.key({ modkey,           }, "i", function() awful.util.spawn({"emacs", "notes/notes.org"}) end,
               {description = "toggle notes", group = "hotkeys"}),
 
     awful.key({ modkey }, "/", function()
