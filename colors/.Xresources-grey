@@ -1,0 +1,73 @@
+Xft.dpi:       160
+
+!! Colorscheme
+
+! special
+*.foreground: #d2d2c2
+*.background: #384242
+*.cursorColor: #86766e
+
+! black
+*.color0: #4d4d4d
+*.color8: #709080
+
+! red
+*.color1: #ff4040
+*.color9: #dca3a3
+
+! green
+*.color2: #60b48a
+*.color10: #c3bf9f
+
+! yellow
+*.color3: #efdfaf
+*.color11: #dfcfa0
+
+! blue
+*.color4: #4ca1be
+*.color12: #94bff3
+
+! magenta
+*.color5: #dd8cc3
+*.color13: #ec93d3
+
+! cyan
+*.color6: #8cd0d3
+*.color14: #93e0e3
+
+! white
+*.color7: #d1d1c2
+*.color15: #fdfdfd
+
+!! URxvt Appearance
+
+rofi.font: RobotoMono 20
+URxvt.font: xft:RobotoMono:style=Regular:size=12
+URxvt.boldFont: xft:RobotoMono:style=Bold:size=12
+URxvt.italicFont: xft:RobotoMono:style=Italic:size=12
+URxvt.boldItalicFont: xft:RobotoMono:style=Bold Italic:size=12
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.internalBorder: 30
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 10000
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: false
+URxvt.depth: 30
+URxvt.iso14755: false
+
+!! Utils
+URxvt.perl-ext-common: ...,clipboard,keyboard-select,resize-font
+! copy paste
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Mod4-c: perl:clipboard:copy
+URxvt.keysym.Mod4-v: perl:clipboard:paste
+! search and copy
+URxvt.keysym.Mod4-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
+! resize font
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-equal: resize-font:bigger
+URxvt.keysym.C-0: resize-font:reset

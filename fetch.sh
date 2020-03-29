@@ -1,10 +1,10 @@
 cp -r ~/.utils .
 cp ~/.vimrc .
 cp ~/.tmux.conf .
-cp -r ~/.config/awesome .
-cp ~/.config/htop/htoprc .
-cp ~/.config/ranger/rc.conf rc.conf.ranger
-cp ~/.ipython/profile_default/ipython_config.py .
+cp -r ~/.config/awesome .config/
+cp ~/.config/htop/htoprc .config/htop/
+cp ~/.config/ranger/rc.conf .config/ranger/rc.conf
+cp ~/.ipython/profile_default/ipython_config.py .ipython/profile_default/
 
 cp ~/.Xmodmap .
 cp ~/.Xresources .
