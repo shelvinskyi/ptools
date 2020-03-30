@@ -308,6 +308,9 @@ globalkeys = gears.table.join(
         end,
         {description = "focus right", group = "client"}),
 
+    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggl,
+        {description = "toggle floating", group = "client"}),
+
     -- By direction vim like
     awful.key({ modkey }, "j",
         function()
@@ -656,8 +659,10 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Middle
             { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
+                align  = "right",
+                -- widget = awful.titlebar.widget.titlewidget(c),
+                widget = wibox.widget.textbox,
+                text = utf8.char(0xf7b6).." "
             },
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal

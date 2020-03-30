@@ -82,7 +82,10 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- theme.wallpaper = theme_path.."/wallpapers/train-smoke-cogecha.jpg"
-theme.wallpaper = theme_path .. "/wallpapers/in-awe-of-mountains-5120x3840.jpg"
+-- theme.wallpaper = theme_path .. "/wallpapers/in-awe-of-mountains-5120x3840.jpg"
+-- theme.wallpaper = theme_path .. "/wallpapers/tokyo-4k.jpg"
+theme.wallpaper = theme_path .. "/wallpapers/forest.jpg"
+
 
 -- You can use your own layout icons like this:
 theme.layout_floating  = theme_path.."/theme/layouts/floatingw.png"
