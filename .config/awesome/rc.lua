@@ -436,10 +436,10 @@ globalkeys = gears.table.join(
               {description = "toggle notes", group = "hotkeys"}),
     awful.key({ modkey }, ".", function()
                     local c = client.focus
-                    if c ~= nill and c.name == "mlipython" then
+                    if c ~= nill and c.name == "VVVVVVVVVVVVV" then
                         c:kill()
                     else
-                        awful.spawn(terminal.." -e ipython", {name = 'mlipython'})
+                        awful.spawn(terminal.." -e ipython", {name = 'VVVVVVVVVVVVV'})
                     end
                 end,
               {description = "ipython in terminal", group = "hotkeys"}),

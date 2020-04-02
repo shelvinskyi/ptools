@@ -32,6 +32,7 @@ theme.fg_minimize   = xrdb.color8
 theme.useless_gap   = dpi(5)
 theme.zero_width    = dpi(2)
 theme.border_width  = dpi(0)
+theme.notification_border_width = dpi(0)
 theme.border_normal = xrdb.background 
 theme.border_focus  = xrdb.background
 theme.bg_tl_normal  = xrdb.color0
