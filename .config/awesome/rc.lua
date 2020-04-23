@@ -137,23 +137,23 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag.add("1", {
+    awful.tag.add("mai", {
         icon               = theme_path .. "/theme/icons/first.png",
         screen             = s,
     })
-    awful.tag.add("2", {
+    awful.tag.add("chika", {
         icon               = theme_path .. "/theme/icons/second.jpg",
         screen             = s,
     })
-    awful.tag.add("3", {
+    awful.tag.add("misato", {
         icon               = theme_path .. "/theme/icons/third.jpg",
         screen             = s,
     })
-    awful.tag.add("4", {
+    awful.tag.add("saki", {
         icon               = theme_path .. "/theme/icons/fourth.png",
         screen             = s,
     })
-    awful.tag.add("5", {
+    awful.tag.add("ryuko", {
         icon               = theme_path .. "/theme/icons/fifth.png",
         screen             = s,
     })
@@ -422,8 +422,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"}, "l", function () awful.spawn("physlock") end,
               {description = "lock screen", group = "hotkeys"}),
 
-    awful.key({ modkey }, "e", function () awful.spawn("rofi -show emoji -modi emoji") end,
-              {description = "emoji catalogue", group = "hotkeys"}),
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("mupdf ~/papers/pdfs/`cat ~/papers/papers | rofi -dmenu -i -p 'papers' -markup-rows | tr ' ' '\n' | tail -1`") end,
+              {description = "papers catalogue", group = "hotkeys"}),
 
     awful.key({ modkey }, "f", function() awful.spawn("Thunar") end,
               {description = "run filemanager", group = "hotkeys"}),
@@ -618,13 +618,13 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = "2" }
+      properties = { screen = 1, tag = "chika" }
     },
     {
         rule_any = { 
             class = {"Thunderbird", "discord", "TelegramDesktop", "protonmail-bridge"}, 
         },
-        properties = { screen = 1, tag = "3" }
+        properties = { screen = 1, tag = "misato" }
     }
 }
 -- }}}
