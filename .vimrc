@@ -9,6 +9,9 @@
     syntax on
     set encoding=utf-8
 
+    " mouse support
+    set mouse=nvi
+
 " => visuals
 " ----------
 
@@ -44,7 +47,7 @@
 
     map 0 ^
     set history=500
-    map <leader>q :bdelete<cr>
+    map <leader>q :w! \| :bdelete<cr>
     " spell checker
     map <leader>s :setlocal spell!<cr>
 
@@ -125,7 +128,7 @@
 
     " ctrlp
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn|__pycache__)$',
+      \ 'dir':  '\v[\/]\.(git|hg|svn|__pycache__|node_modules)$',
       \ 'file': '\v\.(exe|so|dll|html|css|pyc)$',
       \ }
 

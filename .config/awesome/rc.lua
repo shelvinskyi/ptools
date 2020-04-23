@@ -137,23 +137,23 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag.add("", {
+    awful.tag.add("1", {
         icon               = theme_path .. "/theme/icons/first.png",
         screen             = s,
     })
-    awful.tag.add("", {
+    awful.tag.add("2", {
         icon               = theme_path .. "/theme/icons/second.jpg",
         screen             = s,
     })
-    awful.tag.add("", {
+    awful.tag.add("3", {
         icon               = theme_path .. "/theme/icons/third.jpg",
         screen             = s,
     })
-    awful.tag.add("", {
+    awful.tag.add("4", {
         icon               = theme_path .. "/theme/icons/fourth.png",
         screen             = s,
     })
-    awful.tag.add("", {
+    awful.tag.add("5", {
         icon               = theme_path .. "/theme/icons/fifth.png",
         screen             = s,
     })
@@ -432,7 +432,7 @@ globalkeys = gears.table.join(
                 end,
               {description = "run filemanager", group = "hotkeys"}),
 
-    awful.key({ modkey,           }, "i", function() awful.util.spawn({"emacs", "notes/notes.org"}) end,
+    awful.key({ modkey,           }, "i", function() awful.util.spawn(terminal .. " -e vim notes/notes.org") end,
               {description = "toggle notes", group = "hotkeys"}),
     awful.key({ modkey }, ".", function()
                     local c = client.focus
@@ -610,14 +610,22 @@ awful.rules.rules = {
                 "TelegramDesktop",
                 "firefox",
                 "Thunderbird",
+                "discord"
             },
         },
         properties = { titlebars_enabled = false }
     }, 
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Firefox" },
+      properties = { screen = 1, tag = "2" }
+    },
+    {
+        rule_any = { 
+            class = {"Thunderbird", "discord", "TelegramDesktop", "protonmail-bridge"}, 
+        },
+        properties = { screen = 1, tag = "3" }
+    }
 }
 -- }}}
 
