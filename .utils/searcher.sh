@@ -21,5 +21,5 @@ elif [[ "$query" = "m "* ]]
 then
   firefox "https://mangadex.org/search?title=${q/ /%20}"
 else
-  firefox --search "$query" 
+  firefox "https://www.google.com/search?q=$query" 
 fi

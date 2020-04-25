@@ -358,8 +358,8 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "`", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "hotkeys"}),
-    awful.key({ modkey,           }, "/", function () awful.spawn(browser) end,
-              {description = "open a browser", group = "hotkeys"}),
+    awful.key({ modkey,           }, "/", function () awful.spawn.with_shell("searcher.sh") end,
+              {description = "open search", group = "hotkeys"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "hotkeys"}),
 
@@ -422,8 +422,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"}, "l", function () awful.spawn("physlock") end,
               {description = "lock screen", group = "hotkeys"}),
 
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("echo 'ы|э|ъ|Ы|Э|Ъ' | rofi -dmenu -p 'літери' -sep '|' -lines 6 | xargs echo -n | xclip -selection c") end,
-              {description = "cyrilic letters", group = "hotkeys"}),
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("launcher.sh") end,
+              {description = "tools", group = "hotkeys"}),
 
     awful.key({ modkey }, "f", function() awful.spawn("Thunar") end,
               {description = "run filemanager", group = "hotkeys"}),
