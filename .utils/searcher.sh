@@ -1,7 +1,7 @@
 #!/bin/bash
 theme=$(echo "#prompt { background-color: #323F4E; }" "*{font: \"Roboto Mono 20\";}")
 
-query=$(rofi -dmenu -p " /yt/gh/lmap/manga]" -lines 0 -theme-str "$theme")
+query=$(rofi -dmenu -p "yglm" -lines 0 -theme-str "$theme")
 q=${query:2}
 
 echo $query

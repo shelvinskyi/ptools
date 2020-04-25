@@ -87,6 +87,16 @@ do
   LABELS["$key"]="edit"
 done
 
+# envs
+declare -A ENVS=(
+    ["outloud-website"]="code ~/dev/outloud-website"
+)
+for key in "${!ENVS[@]}"
+do
+  COMMANDS["$key"]="${ENVS[$key]}"
+  LABELS["$key"]="env"
+done
+
 
 
 # === party! ===
@@ -99,17 +109,16 @@ function print_menu()
     done
 }
 
-function start()
-{
-    theme=$(echo "#prompt { background-color: #F1FF52 ; }")
-    print_menu | column -s '|' -t | rofi -dmenu -p "  " -markup-rows -theme-str "$theme"| tr -d '\n'
-}
-
-
-# Run it
-value="$(start)"
-choice=$(echo ${value/*span> } | awk '{$1=$1};1')
-if test ${COMMANDS["$choice"]+isset}
+if [[ -z "$@" ]]
 then
-    eval ${COMMANDS[$choice]}
+  print_menu | column -s '|' -t
+  exit 0
+else
+  value="$(echo "$1" | tr -d '\n')"
+  choice="$(echo ${value/*span> } | awk '{$1=$1};1')"
+  if [[ "${COMMANDS[$choice]+isset}" ]]
+  then
+    coproc ( eval "${COMMANDS[$choice]}" )
+    exit 0
+  fi
 fi

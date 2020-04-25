@@ -358,8 +358,6 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "`", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "hotkeys"}),
-    awful.key({ modkey,           }, "/", function () awful.spawn.with_shell("searcher.sh") end,
-              {description = "open search", group = "hotkeys"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "hotkeys"}),
 
@@ -389,8 +387,12 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "\\",
-              function () awful.spawn("rofi -show combi") end,
+    awful.key({ modkey }, "/", function () awful.spawn.with_shell("searcher.sh") end,
+              {description = "open search", group = "hotkeys"}),
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("rofi -modi \"combi,emoji,ssh\" -combi-modi \"window,magic:launcher.sh,drun\" -show combi") end,
+              {description = "tools", group = "hotkeys"}),
+    awful.key({ modkey }, "\\",
+              function () awful.spawn("rofi -modi \"combi,emoji,ssh\" -combi-modi \"window,magic:launcher.sh,drun\" -show combi") end,
               -- function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "hotkeys"}),
 
@@ -422,19 +424,14 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"}, "l", function () awful.spawn("physlock") end,
               {description = "lock screen", group = "hotkeys"}),
 
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("launcher.sh") end,
-              {description = "tools", group = "hotkeys"}),
-
     awful.key({ modkey }, "f", function() awful.spawn("Thunar") end,
               {description = "run filemanager", group = "hotkeys"}),
-    awful.key({ modkey }, "0", function()
+    awful.key({ modkey }, ".", function()
                     awful.spawn.with_shell("sleep 0.5 && scrot /tmp/screenshot-$(date +%F_%T).png -s -e 'xclip -selection c -t image/png < $f'")
                 end,
               {description = "run filemanager", group = "hotkeys"}),
 
-    awful.key({ modkey,           }, "i", function() awful.util.spawn(terminal .. " -e vim notes/notes.org") end,
-              {description = "toggle notes", group = "hotkeys"}),
-    awful.key({ modkey }, "z", function()
+    awful.key({ modkey }, ".", function()
                     local c = client.focus
                     if c ~= nill and c.name == "VVVVVVVVVVVVV" then
                         c:kill()
