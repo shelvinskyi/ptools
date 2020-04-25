@@ -105,17 +105,17 @@ function print_menu()
 {
     for key in "${!LABELS[@]}"
     do
-      echo "<span weight='heavy'>${LABELS[$key]}</span>|$key"
+      echo "${LABELS[$key]}@|@$key"
     done
 }
 
 if [[ -z "$@" ]]
 then
-  print_menu | column -s '|' -t
+  print_menu | column -s '@' -t
   exit 0
 else
   value="$(echo "$1" | tr -d '\n')"
-  choice="$(echo ${value/*span> } | awk '{$1=$1};1')"
+  choice="$(echo ${value/*| } | awk '{$1=$1};1')"
   if [[ "${COMMANDS[$choice]+isset}" ]]
   then
     coproc ( eval "${COMMANDS[$choice]}" )
