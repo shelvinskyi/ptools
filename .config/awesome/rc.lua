@@ -422,8 +422,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"}, "l", function () awful.spawn("physlock") end,
               {description = "lock screen", group = "hotkeys"}),
 
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("mupdf ~/papers/pdfs/`cat ~/papers/papers | rofi -dmenu -i -p 'papers' -markup-rows | tr ' ' '\n' | tail -1`") end,
-              {description = "papers catalogue", group = "hotkeys"}),
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("echo 'ы|э|ъ|Ы|Э|Ъ' | rofi -dmenu -p 'літери' -sep '|' -lines 6 | xargs echo -n | xclip -selection c") end,
+              {description = "cyrilic letters", group = "hotkeys"}),
 
     awful.key({ modkey }, "f", function() awful.spawn("Thunar") end,
               {description = "run filemanager", group = "hotkeys"}),
@@ -434,7 +434,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey,           }, "i", function() awful.util.spawn(terminal .. " -e vim notes/notes.org") end,
               {description = "toggle notes", group = "hotkeys"}),
-    awful.key({ modkey }, ".", function()
+    awful.key({ modkey }, "z", function()
                     local c = client.focus
                     if c ~= nill and c.name == "VVVVVVVVVVVVV" then
                         c:kill()
@@ -610,7 +610,8 @@ awful.rules.rules = {
                 "TelegramDesktop",
                 "firefox",
                 "Thunderbird",
-                "discord"
+                "discord",
+                "Zeal"
             },
         },
         properties = { titlebars_enabled = false }
