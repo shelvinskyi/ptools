@@ -1,5 +1,5 @@
 #!/bin/bash
-theme=$(echo "#prompt { background-color: #F1FF52; }" "*{font: \"Roboto Mono 20\";}")
+theme=$(echo "#prompt { background-color: #323F4E; }" "*{font: \"Roboto Mono 20\";}")
 
 query=$(rofi -dmenu -p " /yt/gh/lmap/manga]" -lines 0 -theme-str "$theme")
 q=${query:2}

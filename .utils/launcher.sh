@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PAPERS_DIR=$HOME"/papers"
+
 declare -A LABELS
 declare -A COMMANDS
 
@@ -64,7 +66,30 @@ do
     LABELS["літера $l"]="symb"
 done
 
-# party
+# papers
+for filename in $PAPERS_DIR/*.pdf
+do
+    name=$(basename "$filename")
+    COMMANDS["$name"]="mupdf \"${filename}\""
+    LABELS["$name"]="paper"
+done
+
+# files
+declare -A FILES=(
+    ["launcher.sh"]="urxvt -e vim ~/.utils/launcher.sh"
+    [".bashrc"]="urxvt -e vim ~/.bashrc"
+    [".vimrc"]="urxvt -e vim ~/.vimrc"
+    ["rc.lua"]="urxvt -e vim ~/.config/awesome/rc.lua"
+)
+for key in "${!FILES[@]}"
+do
+  COMMANDS["$key"]="${FILES[$key]}"
+  LABELS["$key"]="edit"
+done
+
+
+
+# === party! ===
 
 function print_menu()
 {
@@ -76,7 +101,8 @@ function print_menu()
 
 function start()
 {
-    print_menu | column -s '|' -t | rofi -dmenu -p "stuff" -markup-rows | tr -d '\n'
+    theme=$(echo "#prompt { background-color: #F1FF52 ; }")
+    print_menu | column -s '|' -t | rofi -dmenu -p "  " -markup-rows -theme-str "$theme"| tr -d '\n'
 }
 
 
