@@ -17,26 +17,26 @@ local theme = {}
 
 theme.font          = "Roboto Mono 8"
 
-theme.bg_dark       = xrdb.background
-theme.bg_normal     = xrdb.color0
-theme.bg_focus      = xrdb.color8
-theme.bg_urgent     = xrdb.color8
-theme.bg_minimize   = xrdb.color8
-theme.bg_systray    = xrdb.color8
+theme.bg_dark       = '#323F4E'
+theme.bg_normal     = '#3D4C5F'
+theme.bg_focus      = '#56687E'
+theme.bg_urgent     = '#56687E'
+theme.bg_minimize   = '#56687E'
+theme.bg_systray    = '#56687E'
 
-theme.fg_normal     = xrdb.color8
-theme.fg_focus      = xrdb.color4
-theme.fg_urgent     = xrdb.color3
-theme.fg_minimize   = xrdb.color8
+theme.fg_normal     = '#56687E'
+theme.fg_focus      = '#92B6F4'
+theme.fg_urgent     = '#F1FA8C'
+theme.fg_minimize   = '#56687E'
 
 theme.useless_gap   = dpi(5)
 theme.zero_width    = dpi(2)
 theme.border_width  = dpi(0)
 theme.notification_border_width = dpi(0)
-theme.border_normal = xrdb.background 
-theme.border_focus  = xrdb.background
-theme.bg_tl_normal  = xrdb.color0
-theme.bg_tl_focus   = xrdb.color0
+theme.border_normal = '#323F4E'
+theme.border_focus  = '#323F4E'
+theme.bg_tl_normal  = '#3D4C5F'
+theme.bg_tl_focus   = '#3D4C5F'
 theme.border_radius = dpi(6)
 theme.border_marked = "#91231C"
 
