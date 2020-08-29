@@ -1,7 +1,7 @@
 " => basics
 " ---------
 
-    set nocompatible
+    " set nocompatible
     filetype plugin on
     syntax on
     set encoding=utf-8
@@ -18,6 +18,7 @@
     set background=dark
 
     set so=7
+    set number relativenumber
     map <leader>n :set number! relativenumber!<cr>
     set statusline=%#LineNr#\ %=\ %F%m%r%h\ %w\ %l:%c\ %L
     highlight LineNr ctermfg=green
@@ -70,22 +71,22 @@
 " => plugins
 " ----------
     call plug#begin('~/.vim/plugged')
-        Plug 'dense-analysis/ale'
-        Plug 'git@github.com:kien/ctrlp.vim.git'
-        Plug 'jlanzarotta/bufexplorer'
+        Plug 'junegunn/fzf.vim'
         Plug 'junegunn/goyo.vim'
-        Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-fugitive'
-        Plug 'francoiscabrol/ranger.vim'
-
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'dense-analysis/ale'
+  
         Plug 'morhetz/gruvbox'
 
+        " Plug 'git@github.com:kien/ctrlp.vim.git'
         " Plug 'esamattis/slimux'
     call plug#end()
 
     " coc
+    set hidden
     function! s:check_back_space() abort
       let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~ '\s'
@@ -108,10 +109,14 @@
       endif
     endfunction
 
+    hi CocErrorFloat guifg=#000000 guibg=#000000
+    hi CocWarningFloat guifg=#000000 guibg=#000000
+    hi CocInfoFloat guifg=#000000 guibg=#000000
+
     " goyo
     map <leader>z :Goyo<cr>
-    let g:goyo_width=100
-    let g:goyo_height="90%"
+    let g:goyo_width=90
+    let g:goyo_height="85%"
     function! s:goyo_leave()
         set background=dark
     endfunction
@@ -119,19 +124,11 @@
 
     " ale
     let g:ale_linters_explicit=1
-    let g:ale_linters={
-        \ 'python': ['flake8','mypy']}
+    let g:ale_linters={'python': ['flake8','mypy']}
     let g:ale_set_highlights=0
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
 
-    " ctrlp
-    map <leader>f :CtrlPBuffer<cr>
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn|__pycache__|node_modules)$',
-      \ 'file': '\v\.(exe|so|dll|html|css|pyc)$',
-      \ }
-
-    " netr 
-    map <leader>s :Explore<cr>
-    let g:netrw_banner = 0
+    " fzf
+    nnoremap <silent> <C-p> :Files<CR>
+    nnoremap <leader> f :Buf<CR>
