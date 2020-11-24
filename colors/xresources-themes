@@ -1,0 +1,63 @@
+/* spacegrey */
+*background: #242424
+*foreground: #B7BBB7
+*color0: #2C2F33
+*color8: #4B5056
+*color1: #B04C50
+*color9: #B04C50
+*color2: #919652
+*color10: #94985B
+*color3: #E2995C
+*color11: #E2995C
+*color4: #66899D
+*color12: #66899D
+*color5: #8D6494
+*color13: #8D6494
+*color6: #527C77
+*color14: #527C77
+*color7: #606360
+*color15: #DDE3DC! Colorscheme
+
+
+/* ephemeral */
+*.background:   #323F4E
+*.foreground:   #F8F8F2
+*.cursorColor:  #F8F8F2
+*.color0:       #3D4C5F
+*.color1:       #F48FB1
+*.color2:       #A1EFD3
+*.color3:       #F1FA8C
+*.color4:       #92B6F4
+*.color5:       #BD99FF
+*.color6:       #87DFEB
+*.color7:       #F8F8F2
+*.color8:       #56687E
+*.color9:       #EE4F84
+*.color10:      #53E2AE
+*.color11:      #F1FF52
+*.color12:      #6498EF
+*.color13:      #985EFF
+*.color14:      #24D1E7
+*.color15:      #E5E5E5
+
+
+/* zenburn */
+*.foreground: #d2d2c2
+*.background: #384242
+*.cursorColor: #86766e
+*.color0: #4d4d4d
+*.color8: #709080
+*.color1: #ff4040
+*.color9: #dca3a3
+*.color2: #60b48a
+*.color10: #c3bf9f
+*.color3: #efdfaf
+*.color11: #dfcfa0
+*.color4: #4ca1be
+*.color12: #94bff3
+*.color5: #dd8cc3
+*.color13: #ec93d3
+*.color6: #8cd0d3
+*.color14: #93e0e3
+*.color7: #d1d1c2
+*.color15: #fdfdfd
