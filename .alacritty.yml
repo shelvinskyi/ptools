@@ -1,0 +1,79 @@
+working_directory: /home/acidburnburn/dev/
+live_config_reload: true
+background_opacity: 1.0
+
+window:
+  dimensions:
+    columns: 80
+    lines: 38
+  padding:
+    x: 20
+    y: 15
+  dynamic_padding: true
+  decorations: none
+  title: "~~~~~~~~~~~~"
+  dynamic_title: true
+
+scrolling:
+  history: 20000
+  multiplier: 3
+
+font:
+  size: 12.0
+  normal:
+    family: RobotoMono
+    style: Regular
+  bold:
+    family: RobotoMono
+    style: Bold
+  italic:
+    family: RobotoMono
+    style: Italic
+  bold_italic:
+    family: RobotoMono
+    style: Bold Italic
+
+# zenburn
+colors:
+  primary:
+    background: "#384242"
+    foreground: "#d2d2c2"
+  cursor:
+    cursor: "#86766e"
+  normal:
+    black:   '#4d4d4d'
+    red:     '#ff4040'
+    green:   '#60b48a'
+    yellow:  '#efdfaf'
+    blue:    '#4ca1be'
+    magenta: '#dd8cc3'
+    cyan:    '#8cd0d3'
+    white:   '#d1d1c2'
+  bright:
+    black:   '#709080'
+    red:     '#dca3a3'
+    green:   '#c3bf9f'
+    yellow:  '#dfcfa0'
+    blue:    '#94bff3'
+    magenta: '#ec93d3'
+    cyan:    '#93e0e3'
+    white:   '#fdfdfd'
+  search:
+    matches:
+      foreground: '#000000'
+      background: '#f4f186'
+    focused_match:
+      foreground: CellBackground
+      background: CellForeground
+
+key_bindings:
+  - { key: V,          mods: Super,               action: Paste          }
+  - { key: C,          mods: Super,               action: Copy           }
+  - { key: Escape,     mods: Super,   mode: Vi,   action: ScrollToBottom }
+  - { key: Escape,     mods: Super,               action: ToggleViMode   }
+  - { key: PageUp,     mods: Super,   mode: ~Alt, action: ScrollPageUp,  }
+  - { key: PageDown,   mods: Super,   mode: ~Alt, action: ScrollPageDown }
+  - { key: Slash,      mods: Super,               action: SearchBackward  }
+
+debug:
+  render_timer: false
