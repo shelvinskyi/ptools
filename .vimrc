@@ -82,6 +82,7 @@
         Plug 'dense-analysis/ale'
   
         Plug 'morhetz/gruvbox'
+        Plug 'jpalardy/vim-slime'
 
         " Plug 'git@github.com:kien/ctrlp.vim.git'
         " Plug 'esamattis/slimux'
@@ -132,5 +133,22 @@
     highlight clear ALEWarningSign
 
     " fzf
-    nnoremap <silent> <C-p> :Files<CR>
-    nnoremap <leader> f :Buf<CR>
+    nnoremap <silent><C-p> :Files<CR>
+    nnoremap <leader>f :Buffers<CR>
+    nnoremap <leader>d :Rg!<CR>
+
+    " slime
+    let g:slime_python_ipython = 1
+    let g:slime_target = "vimterminal"
+    " let g:slime_target = "screen"
+    " let g:slime_default_config = {'sessionname': 'ipy', 'windowname': '0'}
+
+    xmap <c-r><c-r> <Plug>SlimeRegionSend
+    nmap <c-r><c-r> <Plug>SlimeParagraphSend
+    let g:slime_cell_delimiter = "#!"
+    nmap <c-r>e <Plug>SlimeSendCell
+
+    " ipython
+    set termwinsize=9x0
+    nnoremap <leader>p :terminal ipython<CR>
+
