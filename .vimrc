@@ -16,6 +16,7 @@
     set t_Co=256
 
     set background=dark
+    " colorscheme yourfavcolorscheme
 
     set so=7
     set number relativenumber
@@ -38,6 +39,7 @@
 
     " turn off error sound
     set noeb vb t_vb=
+    autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 " => utils
 " --------
@@ -83,9 +85,7 @@
   
         Plug 'morhetz/gruvbox'
         Plug 'jpalardy/vim-slime'
-
-        " Plug 'git@github.com:kien/ctrlp.vim.git'
-        " Plug 'esamattis/slimux'
+        Plug 'JuliaEditorSupport/julia-vim'
     call plug#end()
 
     " coc
@@ -138,17 +138,6 @@
     nnoremap <leader>d :Rg!<CR>
 
     " slime
-    let g:slime_python_ipython = 1
-    let g:slime_target = "vimterminal"
-    " let g:slime_target = "screen"
-    " let g:slime_default_config = {'sessionname': 'ipy', 'windowname': '0'}
-
-    xmap <c-r><c-r> <Plug>SlimeRegionSend
-    nmap <c-r><c-r> <Plug>SlimeParagraphSend
-    let g:slime_cell_delimiter = "#!"
-    nmap <c-r>e <Plug>SlimeSendCell
-
-    " ipython
-    set termwinsize=9x0
-    nnoremap <leader>p :terminal ipython<CR>
-
+    let g:slime_target = 'vimterminal'
+    let g:slime_cell_delimiter = "###"
+    nmap <C-r><C-r> <Plug>SlimeSendCell
