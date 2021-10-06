@@ -1,37 +1,36 @@
 Xft.dpi:       160
 
-!! Colorscheme
-
-! special
-*.background:   #323F4E
-*.foreground:   #F8F8F2
-*.cursorColor:  #F8F8F2
-*.color0:       #3D4C5F
-*.color1:       #F48FB1
-*.color2:       #A1EFD3
-*.color3:       #F1FA8C
-*.color4:       #92B6F4
-*.color5:       #BD99FF
-*.color6:       #87DFEB
-*.color7:       #F8F8F2
-*.color8:       #56687E
-*.color9:       #EE4F84
-*.color10:      #53E2AE
-*.color11:      #F1FF52
-*.color12:      #6498EF
-*.color13:      #985EFF
-*.color14:      #24D1E7
-*.color15:      #E5E5E5
-
+/* zenburn */
+*.foreground: #d2d2c2
+*.background: #384242
+*.cursorColor: #86766e
+*.color0: #4d4d4d
+*.color8: #709080
+*.color1: #ff4040
+*.color9: #dca3a3
+*.color2: #60b48a
+*.color10: #c3bf9f
+*.color3: #efdfaf
+*.color11: #dfcfa0
+*.color4: #4ca1be
+*.color12: #94bff3
+*.color5: #dd8cc3
+*.color13: #ec93d3
+*.color6: #8cd0d3
+*.color14: #93e0e3
+*.color7: #d1d1c2
+*.color15: #fdfdfd
 
 rofi.font: RobotoMono 20
-URxvt.font: xft:RobotoMono:style=Regular:size=12
-URxvt.boldFont: xft:RobotoMono:style=Bold:size=12
+URxvt.font: xft:RobotoMono:style=Regular:size=12:antialias=true,xft:FreeMono:size=12
+URxvt.boldFont: xft:RobotoMono:style=Bold:size=12,xft:FreeMono:size=12
 URxvt.italicFont: xft:RobotoMono:style=Italic:size=12
 URxvt.boldItalicFont: xft:RobotoMono:style=Bold Italic:size=12
+! URxvt.font:        -xos4-terminus-medium-*-*-*-32-*-*-*-*-*-*-*
+! URxvt.boldFont:    -xos4-terminus-bold-*-*-*-32-*-*-*-*-*-*-*
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
-URxvt.internalBorder: 30
+URxvt.internalBorder: 40
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 10000

@@ -1,6 +1,5 @@
 configuration {
   show-icons: false;
-  icon-theme: "Paper";
   cycle: true;
   hide-scrollbar: true;
   disable-history: false;
@@ -11,8 +10,8 @@ configuration {
 }
 
 * {
-  background-color: #1c1c1c;
-  text-color: #888888;
+  /* background-color: #1c1c1c; */
+  /* text-color: #888888; */
   font: "Roboto Mono 14";
 }
 
@@ -23,7 +22,7 @@ inputbar,
 prompt,
 textbox-prompt-colon,
 entry {
-  background-color: #1f1f1f;
+  /* background-color: #1f1f1f; */
 }
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
@@ -31,30 +30,30 @@ entry {
 }
 #prompt {
   padding: 16px 20px;
-  background-color: #728cbb;
-  text-color: #1c1c1c;
+  /* background-color: #728cbb; */
+  /* text-color: #1c1c1c; */
 }
 #textbox-prompt-colon {
   expand: false;
   str: "  ";
-  text-color: #728cbb;
+  /* text-color: #728cbb; */
   padding: 14px 10px 10px 10px;
   font: "Hurmit Nerd Font Mono 24";
 }
 #entry {
-  text-color: #728cbb;
+  /* text-color: #728cbb; */
   padding: 18px 16px 16px 0px;
 }
 #element {
   padding: 20px;
   margin: 4px 4px;
   border: 0px 0px 0px 8px;
-  background-color: #1f1f1f;
-  border-color: #1f1f1f;
+  /* background-color: #1f1f1f; */
+  /* border-color: #1f1f1f; */
 }
 #element.selected {
-  background-color: #282828;
-  text-color: #728cbb;
-  border-color: #728cbb;
+  /* background-color: #282828; */
+  /* text-color: #728cbb; */
+  /* border-color: #728cbb; */
 }
 

@@ -12,6 +12,8 @@ clear mod4
 
 keycode 133 = Alt_L
 keycode 64 = Super_L
+keycode 118 = Prior
+keycode 119 = Next
 
 add mod1 = Alt_L Alt_R Meta_L
 add mod4 = Super_L Super_R Super_L Hyper_L
