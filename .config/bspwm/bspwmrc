@@ -2,13 +2,14 @@
 
 # kill all the tools
 pgrep -x sxhkd > /dev/null
-pgrep -x polybar > /dev/null
+pgrep -x tint2 > /dev/null
 pgrep -x conky > /dev/null
+killall tint2
 
 # run all the tools
 feh --bg-fill $HOME/.config/wallpaper.jpg
 sxhkd &
-polybar mainbar &
+tint2 &
 conky
 
 # nice cursor

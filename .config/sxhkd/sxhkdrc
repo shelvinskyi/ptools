@@ -2,6 +2,7 @@
 super + backslash
 	alacritty
 
+# terminal emulator
 super + grave
 	alacritty
 
@@ -40,25 +41,23 @@ super + m
     fi
 
 # set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+# super + ctrl + {m,x,y,z}
+# 	bspc node -g {marked,locked,sticky,private}
 
 
 ### focus/swap
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+# super + bracket{left,right}
+# 	bspc desktop -f {prev,next}.local
 
 # focus the last node
 super + Tab
-	bspc desktop -f last
+	bspc node last -f
 
 # focus the older or newer node in the focus history
 super + {i,o}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+	bspc node {older,newer} -f
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9}
@@ -117,9 +116,6 @@ super + f
 
 super + equal
     sleep 0.5 && scrot /tmp/screenshot-$(date +%F_%T).png -s -e 'xclip -selection c -t image/png < $f'
-
-super + p
-    alacritty -e $HOME/anaconda3/envs/ml/bin/ipython
 
 super + s
     if pgrep conky; then pkill conky; else conky; fi
