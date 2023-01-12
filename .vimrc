@@ -67,6 +67,10 @@
     nnoremap <leader>4 :4b<cr>
     nnoremap <leader>5 :5b<cr>
 
+    " move arount
+    nnoremap <C-k> <C-u>
+    nnoremap <C-j> <C-d>
+
     " system clipboard
     set clipboard=unnamed
 
@@ -86,6 +90,8 @@
         Plug 'morhetz/gruvbox'
         Plug 'jpalardy/vim-slime'
         Plug 'JuliaEditorSupport/julia-vim'
+        Plug 'dart-lang/dart-vim-plugin'
+        Plug 'thosakwe/vim-flutter'
     call plug#end()
 
     " coc
@@ -134,10 +140,13 @@
 
     " fzf
     nnoremap <silent><C-p> :Files<CR>
-    nnoremap <leader>f :Buffers<CR>
-    nnoremap <leader>d :Rg!<CR>
+    nnoremap <leader>d :Buffers<CR>
+    nnoremap <leader>f :Rg!<CR>
 
     " slime
     let g:slime_target = 'vimterminal'
     let g:slime_cell_delimiter = "###"
     nmap <C-r><C-r> <Plug>SlimeSendCell
+
+    " dart
+    let g:dart_style_guide = 2
