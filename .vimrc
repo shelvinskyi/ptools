@@ -145,7 +145,8 @@
 
     " slime
     let g:slime_target = 'vimterminal'
-    let g:slime_cell_delimiter = "###"
+    let g:slime_cell_delimiter = "###>"
+    let g:slime_python_ipython = 1
     nmap <C-r><C-r> <Plug>SlimeSendCell
 
     " dart
