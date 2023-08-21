@@ -74,6 +74,7 @@
     " system clipboard
     set clipboard=unnamed
 
+
 " => plugins
 " ----------
     call plug#begin('~/.vim/plugged')
@@ -86,6 +87,8 @@
         Plug 'tpope/vim-fugitive'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'dense-analysis/ale'
+        Plug 'pangloss/vim-javascript'
+        Plug 'christoomey/vim-tmux-navigator'
   
         Plug 'morhetz/gruvbox'
         Plug 'jpalardy/vim-slime'
@@ -95,26 +98,33 @@
     call plug#end()
 
     " coc
+    set updatetime=300
     set hidden
-    function! s:check_back_space() abort
+
+    inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    function! CheckBackspace() abort
       let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
+      return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
-    inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<Tab>" :
-    \ coc#refresh()
 
     " use <c-space>for trigger completion
     inoremap <silent><expr> <c-space> coc#refresh()
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-    function! s:show_documentation()
-      if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
+    nnoremap <silent> <leader>b :call ShowDocumentation()<CR>
+    nmap <silent> <leader>g <Plug>(coc-implementation)
+
+    function! ShowDocumentation()
+      if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
       else
-        call CocAction('doHover')
+        call feedkeys('K', 'in')
       endif
     endfunction
 
@@ -138,14 +148,17 @@
     highlight clear ALEErrorSign
     highlight clear ALEWarningSign
 
+    " javascript
+    let g:javascript_plugin_jsdoc = 1
+
     " fzf
     nnoremap <silent><C-p> :Files<CR>
     nnoremap <leader>d :Buffers<CR>
     nnoremap <leader>f :Rg!<CR>
 
     " slime
-    let g:slime_target = 'vimterminal'
-    let g:slime_cell_delimiter = "###>"
+    let g:slime_target = 'tmux'
+    let g:slime_cell_delimiter = "### cell"
     let g:slime_python_ipython = 1
     nmap <C-r><C-r> <Plug>SlimeSendCell
 
